@@ -1,0 +1,5 @@
+pydantic==2.11.9
+pydantic_core==2.33.2
+fastapi==0.118.0
+uvicorn
+PyJWT==2.10.1

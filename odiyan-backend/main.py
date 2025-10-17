@@ -29,7 +29,7 @@ def get_static_content_from_disk_or_cache(filename,file_path):
         content = file_content_cache[filename]
     return content
     
-# Start APIs for serving static HTML+JS content
+# Start APIs for serving static HTML+JS+CSS content
 @app.get("/")
 def show_home():
     html_content = get_static_content_from_disk_or_cache("index.html","index.html")

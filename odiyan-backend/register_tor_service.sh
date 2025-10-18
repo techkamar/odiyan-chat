@@ -9,7 +9,7 @@ echo "⏳ Moving to /etc/tor directory"
 cd /etc/tor
 
 # Add Hidden Service
-echo "⏳ Adding Hidden Service Configuration"
+echo "⏳ Adding Hidden Service Configuration in torrc file"
 echo "HiddenServiceDir /var/lib/tor/hidden_service/" >> torrc
 echo "HiddenServicePort 80 127.0.0.1:8000" >> torrc
 

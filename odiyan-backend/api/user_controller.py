@@ -7,6 +7,9 @@ user_router = APIRouter(prefix="/api/user")
 
 @user_router.post("")
 def register_user(user_data:CreateUser):
+    if user_data.password!=user_data.confirm_password:
+        return JSONResponse(status_code=500, content={"message": "Password and Confirm Password is not matching"})
+    
     if not DataService.check_user_exists(user_data.username):
         DataService.add_new_user(user_data)
         return JSONResponse(status_code=201, content={"message": "User Created Successfully"})

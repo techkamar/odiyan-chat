@@ -1,8 +1,13 @@
 import uuid
 import hashlib
+import jwt
+import os
+import datetime
 
 class DataService:
     user = {}
+    # Secret key for encoding and decoding
+    SECRET_KEY = os.getenv("JWTSECKEY","JWTSECKEY")
 
     @staticmethod
     def encode_password(password):
@@ -19,16 +24,48 @@ class DataService:
         md5_hex_digest = md5_hash_object.hexdigest()
 
         return md5_hex_digest
+    
     @staticmethod
     def check_user_exists(username):
         if username in DataService.user:
             return True
         return False
     
+    @staticmethod
     def add_new_user(user_data):
         user_uuid = str(uuid.uuid4())
         user_password = DataService.encode_password(user_data.password)
         username = user_data.username
 
         DataService.user[username]={'password':user_password,'uuid':user_uuid}
-        print(DataService.user)
+
+    @staticmethod
+    def validate_user_credential(user_data):
+        if user_data.username not in DataService.user:
+            return False, "Username or Password is Invalid"
+        
+        password = DataService.encode_password(user_data.password)
+        if DataService.user[user_data.username]['password']!= password:
+            return False, "Username or Password is Invalid"
+        
+        return True, "Login Success"
+    
+    @staticmethod
+    def encode_user_jwt(user_params):
+        payload_json = user_params
+        payload_json['exp'] = datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Token expires in 1 hour
+
+        # Encode the JWT
+        token = jwt.encode(payload_json, DataService.SECRET_KEY, algorithm='HS256')
+        return token
+    
+    @staticmethod
+    def decode_user_jwt(token):
+        # Decode the JWT
+        try:
+            decoded_token = jwt.decode(token, DataService.SECRET_KEY, algorithms=['HS256'])
+            return decoded_token
+        except jwt.ExpiredSignatureError:
+            raise Exception("JWT Token has expired")
+        except jwt.InvalidTokenError:
+            raise Exception("JWT Token is Invalid")

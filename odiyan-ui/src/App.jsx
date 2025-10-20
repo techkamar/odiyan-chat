@@ -1,4 +1,4 @@
-import Login from './pages/login/login.jsx';
+import LoginRegisterMainComponent from './pages/login/login.jsx';
 import Home from './pages/home/home.jsx'
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import './App.css'
@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginRegisterMainComponent />} />
       </Routes>
     </BrowserRouter>
   );

@@ -33,3 +33,7 @@ def user_login(response: Response, user_data: LoginUser):
         samesite="Strict"
     )
     return f"User [{user_data.username}] is now logged in..."
+
+@auth_router.get("/logout")
+def user_logout(response: Response):
+    response.delete_cookie(key="Authorization")

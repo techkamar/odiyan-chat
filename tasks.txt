@@ -1,1 +1,2 @@
-2. Create Login and Registration Pages
+1. Make Registeration API work with proper error messages
+2. Make Login API work

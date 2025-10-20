@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse
 from api.auth_controller import auth_router
+from api.user_controller import user_router
 app = FastAPI()
 
 file_content_cache = {}
@@ -49,3 +50,4 @@ def give_static_assets(asset_file:str):
 
 # Adding other routers
 app.include_router(auth_router, tags=["Auth based APIs"])
+app.include_router(user_router, tags=["User Management APIs"])

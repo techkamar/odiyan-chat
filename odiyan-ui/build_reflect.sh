@@ -17,5 +17,7 @@ npm run build
 # Copy relevant files to proper places
 echo "Copying Build files to Backend"
 cp dist/index.html ../odiyan-backend/index.html
+# Clear existing
+rm ../odiyan-backend/assets/*.*
 cp dist/assets/*.* ../odiyan-backend/assets/
 

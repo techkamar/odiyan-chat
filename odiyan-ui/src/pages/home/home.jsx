@@ -1,10 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+    const [userDetails, setUserDetails] = useState({});
     const checkLogin = async() => {
         let response = await fetch("/api/auth/me");
         if(response.status!=200){
             window.location.href="/login";
+        }
+        else{
+            let tmpUserDetails = await response.json();
+            setUserDetails(tmpUserDetails);
         }
     }
     useEffect(()=>{
@@ -12,7 +17,11 @@ const Home = () => {
     },[]);
     
     return (
-        <>This is Home Page</>
+        <>
+        <div>
+            Logged In User is {userDetails['username']}
+        </div>
+        </>
     )
 }
 

@@ -26,7 +26,7 @@ const Login = (props) => {
         else
         {
             let error_message = await response.json();
-            alert(error_message);
+            alert(error_message['message']);
         }
     }
     return(
@@ -54,8 +54,31 @@ const Register = (props) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     
-    const doRegister = () => {
-        alert("Username : "+username+" , Password : "+password+ " and Confirm Password : "+confirmPassword);
+    const doRegister = async() => {
+        let response = await fetch("/api/user",{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    'username': username,
+                    'password': password,
+                    'confirm_password': confirmPassword
+                }
+            )
+        });
+
+        if (response.status==201)
+        {
+            // Show Login Page
+            props.callback(true);
+        }
+        else
+        {
+            let error_message = await response.json();
+            alert(error_message['message']);
+        }
     }
     return(
         <>

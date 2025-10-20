@@ -5,8 +5,29 @@ const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const doLogin = () => {
-        alert("Username : "+username+" and Password : "+password);
+    const doLogin = async() => {
+        let response = await fetch("/api/auth/login",{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    'username': username,
+                    'password': password,
+                }
+            )
+        });
+
+        if (response.status==200)
+        {
+            window.location.href = "/"; // Redirect to homepage
+        }
+        else
+        {
+            let error_message = await response.json();
+            alert(error_message);
+        }
     }
     return(
         <>

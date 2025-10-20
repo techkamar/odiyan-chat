@@ -9,6 +9,8 @@ auth_router = APIRouter(prefix="/api/auth")
 def meapi(request: Request):
     if request.cookies.get("Authorization") is None:
         return JSONResponse(status_code=401, content={"message":"User is not logged in"})
+    else:
+        return JSONResponse(status_code=200, content={})
 
 @auth_router.post("/login")
 def user_login(response: Response, user_data: LoginUser):

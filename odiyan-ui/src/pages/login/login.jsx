@@ -8,11 +8,11 @@ const Login = () => {
                     <div className='login-entry'>
                         <input type='text' placeholder='USERNAME'/>
                         <input type='password' placeholder='PASSWORD'/>
-                        <button className='scale-btn crimson'>LOGIN</button>
+                        <button className='scale-btn'>LOGIN</button>
                     </div>
                     <div className='or-text-container'>---- OR ----</div>
                     <div className='login-entry'>
-                        <button className='scale-btn green'>REGISTER</button>
+                        <button className='scale-btn'>REGISTER</button>
                     </div>
                 </div>
             </div>

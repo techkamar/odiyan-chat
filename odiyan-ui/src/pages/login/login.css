@@ -8,12 +8,14 @@
     border: 0px;
     padding: 15px 30px;
     margin:20px;
-    border-radius: 3px;
+    /* border-radius: 3px; */
 }
 
 .scale-btn:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    outline: 1px solid white;
+    background-color: white;
+    color:black;
 }
 
 .crimson{
@@ -27,10 +29,9 @@
 .login-box-container{
     min-width: 320px;
     min-height: 320px;
-    background-color: white;
     margin:0px auto;
     border-radius: 3px;
-    box-shadow: red;
+    outline:2px solid white;
 }
 .login-entry{
     display: flex;
@@ -40,12 +41,12 @@
 }
 
 .login-entry input{
-    background-color: white;
     border:0px;
-    outline: 2px solid rgb(10, 159, 223);
+    outline: 2px solid white;
     color:black;
     padding:20px;
     margin:20px;
+    color:white;
 }
 
 .or-text-container{
@@ -55,5 +56,5 @@
 
 ::placeholder{
     text-align: center;
-    color: rgb(10, 159, 223);
+    color: white;
 }

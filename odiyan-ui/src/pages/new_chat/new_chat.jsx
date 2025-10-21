@@ -28,6 +28,20 @@ const NewChatWindow = (props) => {
             alert("User : "+searchUsername+" not found");
         }
     }
+
+    const sendHi = async() => {
+        const utcTimestamp = Date.now();
+        props.setChatHistory({
+            'username':searchUsername,
+            'msg_entry':{
+                "recieved": false,
+                "message": "Hi",
+                "timestamp": utcTimestamp
+            }
+        })
+        setUserFound(false);
+    } 
+
     return(
         <dialog className='chat-dialog' open>
             <div className="new-chat-window-root-container">
@@ -38,7 +52,7 @@ const NewChatWindow = (props) => {
                     </div>
                     <div className="new-chat-user-result-box">
                         {
-                            userFound?<button className='chat-dialog-say-hi-btn'>Say Hi to {searchUsername}</button>:<></>
+                            userFound?<button className='chat-dialog-say-hi-btn' onClick={()=>(sendHi())}>Say Hi to {searchUsername}</button>:<></>
                         }
                     </div>
                     <div className="new-chat-window-footer-box">

@@ -24,7 +24,7 @@ const HeaderBanner = (props) => {
                 </div>
             </div>
             {
-                showAddNewMesasgeBox? <NewChatWindow show={setShowAddNewMesasgeBox}/>:<></>
+                showAddNewMesasgeBox? <NewChatWindow show={setShowAddNewMesasgeBox} setChatHistory={props.setChatHistory}/>:<></>
             }
             
         </>

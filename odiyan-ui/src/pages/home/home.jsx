@@ -17,6 +17,17 @@ const Home = () => {
             setUserDetails(tmpUserDetails);
         }
     }
+    const appendChatHistory = async(data) => {
+        const tmpChatHistory = structuredClone(chatHistory);
+        if(data['username'] in tmpChatHistory == false){
+            tmpChatHistory[data['username']] = []
+        }
+
+        tmpChatHistory[data['username']] = [...tmpChatHistory[data['username']], data['msg_entry']]
+        console.log("Chat History = ");
+        console.log(tmpChatHistory);
+        setChatHistory(tmpChatHistory);
+    }
     useEffect(()=>{
         checkLogin();
     },[]);
@@ -24,7 +35,7 @@ const Home = () => {
     return (
         <>
             <div>
-                <HeaderBanner username={userDetails['username']}/>
+                <HeaderBanner username={userDetails['username']} setChatHistory={appendChatHistory}/>
                 <ChatBody/>
             </div>
         </>

@@ -1,0 +1,39 @@
+.header-banner-root-container{
+    display: flex;
+    justify-content: space-between;
+    border: 0px;
+    border-bottom: 2px solid whitesmoke;
+}
+
+.header-banner-left-container{
+    font-size:large;
+    margin-left:20px;
+    font-weight: bold;
+    padding: 20px;
+}
+.header-banner-right-container{
+    font-size:large;
+    margin-right:20px;
+    padding: 20px;
+}
+
+.header-btn{
+    padding: 10px 20px;
+    border: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: transparent;
+    outline:2px solid whitesmoke;
+}
+
+.header-btn:hover{
+    background-color: whitesmoke;
+    color:black;
+    cursor:pointer;
+}
+
+.header-btn:focus{
+    background-color: crimson;
+    color:black;
+    cursor:pointer;
+}

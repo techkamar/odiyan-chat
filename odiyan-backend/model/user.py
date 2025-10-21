@@ -5,6 +5,9 @@ class CreateUser(BaseModel):
     password: str
     confirm_password: str
 
+class SearchUser(BaseModel):
+    username: str
+
 class LoginUser(BaseModel):
     username: str
     password: str

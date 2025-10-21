@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import HeaderBanner from "../header/header";
+
 
 const Home = () => {
     const [userDetails, setUserDetails] = useState({});
@@ -18,9 +20,10 @@ const Home = () => {
     
     return (
         <>
-        <div>
-            Logged In User is {userDetails['username']}
-        </div>
+            <div>
+                <HeaderBanner username={userDetails['username']}/>
+                
+            </div>
         </>
     )
 }

@@ -36,7 +36,7 @@ const Home = () => {
         <>
             <div>
                 <HeaderBanner username={userDetails['username']} setChatHistory={appendChatHistory}/>
-                <ChatBody/>
+                <ChatBody chatHistory={chatHistory}/>
             </div>
         </>
     )

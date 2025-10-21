@@ -7,8 +7,8 @@ const ChatBody = (props) => {
     return(
         <>
             <div className="chat-body-root-container">
-                <ChatBodyLeftComponent contacts={Object.keys(props.chatHistory)}/>
-                <ChatBodyRightComponent/>
+                <ChatBodyLeftComponent contacts={Object.keys(props.chatHistory)} setChattingWith={props.setChattingWith}/>
+                <ChatBodyRightComponent chatUsername={props.chattingWith} chats={props.chatHistory}/>
             </div>
         </>
     );

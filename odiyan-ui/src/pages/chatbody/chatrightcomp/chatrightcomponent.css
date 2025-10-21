@@ -4,3 +4,24 @@
     max-height: 89vh;
     overflow-y: auto;
 }
+.user_msg{
+    margin:20px;
+    padding:10px;
+    background-color: whitesmoke;
+    color: black;
+}
+.sent{
+    display: flex;
+}
+.recieved{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.chat-history-top-bar{
+    text-align: center;
+    background-color: transparent;
+    padding:10px 20px;
+    color:whitesmoke;
+    font-weight: bold;
+}

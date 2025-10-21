@@ -4,7 +4,8 @@ import ChatBody from "../chatbody/chatbody";
 
 
 const Home = () => {
-    const [userDetails, setUserDetails] = useState({});
+    const [userDetails, setUserDetails] = useState({"":[]});
+    const [chattingWith,setChattingWith] = useState("");
     const [chatHistory, setChatHistory] = useState({});
 
     const checkLogin = async() => {
@@ -36,7 +37,7 @@ const Home = () => {
         <>
             <div>
                 <HeaderBanner username={userDetails['username']} setChatHistory={appendChatHistory}/>
-                <ChatBody chatHistory={chatHistory}/>
+                <ChatBody chatHistory={chatHistory} chattingWith={chattingWith} setChattingWith={setChattingWith}/>
             </div>
         </>
     )

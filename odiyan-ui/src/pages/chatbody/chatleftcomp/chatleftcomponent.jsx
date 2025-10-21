@@ -6,8 +6,8 @@ const ChatBodyLeftComponent = (props) => {
         <>
             <div class="chat-body-left-container">
                 {
-                    props.contacts.map((item, index) => (
-                        <div>{item}</div>
+                    props.contacts.map((username, index) => (
+                        <div className='chat-contact' onClick={()=>(props.setChattingWith(username))}>@{username}</div>
                     ))
                 }
             </div>    

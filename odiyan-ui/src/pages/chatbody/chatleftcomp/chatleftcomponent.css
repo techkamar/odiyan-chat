@@ -5,3 +5,15 @@
     overflow-y: auto;
     border-right:1px solid whitesmoke;
 }
+
+.chat-contact{
+    padding:10px 20px;
+    border:0px;
+    outline: 1px solid whitesmoke;
+}
+
+.chat-contact:hover{
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+}

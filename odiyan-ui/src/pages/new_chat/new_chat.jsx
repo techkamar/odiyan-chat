@@ -34,7 +34,7 @@ const NewChatWindow = (props) => {
         props.setChatHistory({
             'username':searchUsername,
             'msg_entry':{
-                "recieved": false,
+                "type": "sent",
                 "message": "Hi",
                 "timestamp": utcTimestamp
             }

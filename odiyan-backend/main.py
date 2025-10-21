@@ -3,6 +3,10 @@ from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse
 from api.auth_controller import auth_router
 from api.user_controller import user_router
+import os
+
+STATIC_CACHING_ENABLED = os.getenv("STATIC_CACHING_ENABLED","Y")
+
 app = FastAPI()
 
 file_content_cache = {}
@@ -22,6 +26,10 @@ def detect_media_type(file_path):
             raise Exception("Unknown Asset Media Type")
     
 def get_static_content_from_disk_or_cache(filename,file_path):
+    if STATIC_CACHING_ENABLED=="N":
+        content = open(file_path).read()
+        return content
+    
     # Save filecontent in Cache to avoid DISK READ
     if filename not in file_content_cache:
         content = open(file_path).read()

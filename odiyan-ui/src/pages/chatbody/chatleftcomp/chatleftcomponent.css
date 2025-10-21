@@ -1,0 +1,7 @@
+.chat-body-left-container{
+    width:25vw;
+    min-height: 89vh;
+    max-height: 89vh;
+    overflow-y: auto;
+    border-right:1px solid whitesmoke;
+}

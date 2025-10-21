@@ -1,4 +1,4 @@
 .chat-body-root-container{
     min-height: 89vh;
-    background-color: crimson;
+    display:flex;
 }

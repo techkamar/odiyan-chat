@@ -20,8 +20,10 @@
 
 .chat-history-top-bar{
     text-align: center;
-    background-color: transparent;
+    background-color: whitesmoke;
     padding:10px 20px;
-    color:whitesmoke;
+    color: black;
     font-weight: bold;
+    position:fixed;
+    width:75vw;
 }

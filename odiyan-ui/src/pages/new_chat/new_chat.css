@@ -1,0 +1,29 @@
+.new-chat-window-inner-container{
+    padding:10px;
+}
+
+.new-chat-user-search-box{
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    gap: 10px;
+    height: 50px;
+}
+
+.new-chat-window-footer-box{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.new-chat-user-result-box{
+    height:200px;
+}
+.chat-dialog{
+    margin:auto;
+    border:0px;
+}
+
+.chat-dialog-close-btn{
+    padding:10px 20px;
+    background-color: transparent;
+    border:0px;
+    outline: 1px solid whitesmoke;
+}

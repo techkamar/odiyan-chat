@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import HeaderBanner from "../header/header";
+import ChatBody from "../chatbody/chatbody";
 
 
 const Home = () => {
     const [userDetails, setUserDetails] = useState({});
+    const [chatHistory, setChatHistory] = useState({});
+
     const checkLogin = async() => {
         let response = await fetch("/api/auth/me");
         if(response.status!=200){
@@ -22,7 +25,7 @@ const Home = () => {
         <>
             <div>
                 <HeaderBanner username={userDetails['username']}/>
-                
+                <ChatBody/>
             </div>
         </>
     )

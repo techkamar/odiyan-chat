@@ -10,8 +10,19 @@ def meapi(request: Request):
     if request.cookies.get("Authorization") is None:
         return JSONResponse(status_code=401, content={"message":"User is not logged in"})
     else:
-        decoded_jwt = DataService.decode_user_jwt(request.cookies.get("Authorization"));
+        # Decode the JWT and send back
+        try:
+            decoded_jwt = DataService.decode_user_jwt(request.cookies.get("Authorization"))
+        except Exception as e:
+            return JSONResponse(status_code=401, content={"message":str(e)})
+        
         decoded_jwt.pop("exp")
+
+        # Only Cookie exists but server is restarted.So user doesn't exist
+        if not DataService.check_user_exists(decoded_jwt['username']):
+            return JSONResponse(status_code=401, content={"message":"User is not logged in"})
+        
+        # Everything is OK. Return OK
         return JSONResponse(status_code=200, content=decoded_jwt)
 
 @auth_router.post("/login")

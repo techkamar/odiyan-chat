@@ -18,6 +18,7 @@ const Home = () => {
             setUserDetails(tmpUserDetails);
         }
     }
+    
     const appendChatHistory = async(data) => {
         const tmpChatHistory = structuredClone(chatHistory);
         if(data['username'] in tmpChatHistory == false){

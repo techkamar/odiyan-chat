@@ -8,7 +8,7 @@ const ChatBodyRightComponent = (props) => {
         const utcTimestamp = Date.now();
 
         const add_message_payload = {
-            "recipient_user": props.chatUsername,
+            "recipient_user": props.recipientUser,
             "message_content_json": {
                 "type": "recieved", // to make sure that alignment is linked with CSS class
                 "message": messageToSend,
@@ -26,7 +26,7 @@ const ChatBodyRightComponent = (props) => {
 
         if (response.status==200){
             props.setChatHistory({
-                'recipient_user':props.chatUsername,
+                'recipient_user':props.recipientUser,
                 'message_content_json':{
                     "type": "sent",
                     "message": messageToSend,
@@ -42,21 +42,32 @@ const ChatBodyRightComponent = (props) => {
                 {
                     props.chatUsername!=""?
                     <>
-                        <div className='chat-history-top-bar'> Now Chatting with @{props.chatUsername}</div>
+                        {
+                            props.recipientUser!=null?
+                            <div className='chat-history-top-bar'> Now Chatting with @{props.recipientUser}</div>:
+                            <></>
+                        }
+                        
                         <div className='chat-history-content-bar'>
                             <div>
                                 {
-                                    props.chats[props.chatUsername].map((entry, index) => (
+                                    
+                                    props.recipientUser!=null? props.chats[props.recipientUser].map((entry, index) => (
                                         <div className={entry['type']}><span className='user_msg'>{entry['message']}</span></div>
-                                    ))
+                                    )):<></>
                                 }
-                                <div className='message-reply-box-parent-container'>
-                                    <div className='reply-label-container'> Reply to @{props.chatUsername}</div>
-                                    <div className='message-reply-box-container'>
-                                        <input type="text" placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
-                                        <button onClick={()=>(sendMessage())}>SEND</button>
-                                    </div>
-                                </div>
+                                {
+                                    props.recipientUser!=null?
+                                        <div className='message-reply-box-parent-container'>
+                                        <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
+                                        <div className='message-reply-box-container'>
+                                            <input type="text" placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
+                                            <button onClick={()=>(sendMessage())}>SEND</button>
+                                        </div>
+                                        </div>:
+                                        <></>
+                                }
+                                
                             </div>
                         </div>
                     </>:<></>

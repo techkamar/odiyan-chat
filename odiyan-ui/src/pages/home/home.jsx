@@ -4,8 +4,7 @@ import ChatBody from "../chatbody/chatbody";
 
 
 const Home = () => {
-    const [userDetails, setUserDetails] = useState({"":[]});
-    const [chattingWith,setChattingWith] = useState("");
+    const [userDetails, setUserDetails] = useState({});
     const [chatHistory, setChatHistory] = useState({});
 
     const checkLogin = async() => {
@@ -36,13 +35,21 @@ const Home = () => {
         if(response.status==200){
             let all_messages = await response.json();
             
-            const tmpChatHistory = structuredClone(chatHistory);
+            let tmpChatHistory = structuredClone(chatHistory);
+            console.log("cloned value = ")
+            console.log(tmpChatHistory)
 
             for (const sender_user of Object.keys(all_messages)){
+
                 if(sender_user in tmpChatHistory == false){
                         tmpChatHistory[sender_user] = []
                 }
+                console.log("History of Sender = ")
+                console.log(tmpChatHistory[sender_user])
+
+                //Problem is here
                 tmpChatHistory[sender_user] = [...tmpChatHistory[sender_user], ...all_messages[sender_user]]
+                
             }
 
             // Set back to State
@@ -56,7 +63,6 @@ const Home = () => {
     useEffect(()=>{
         checkLogin();
         loadMyMessages();
-        // setInterval(loadMyMessages, 10000);
 
     },[]);
     
@@ -64,7 +70,7 @@ const Home = () => {
         <>
             <div>
                 <HeaderBanner username={userDetails['username']} setChatHistory={appendChatHistory}/>
-                <ChatBody chatHistory={chatHistory} chattingWith={chattingWith} setChattingWith={setChattingWith} setChatHistory={appendChatHistory}/>
+                <ChatBody chatHistory={chatHistory} setChatHistory={appendChatHistory}/>
             </div>
         </>
     )

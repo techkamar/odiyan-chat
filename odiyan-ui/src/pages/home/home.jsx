@@ -34,8 +34,22 @@ const Home = () => {
     const loadMyMessages = async() => {
         let response = await fetch("/api/messages");
         if(response.status==200){
-            let all_messages = response.json();
-            console.log(all_messages);
+            let all_messages = await response.json();
+            
+            const tmpChatHistory = structuredClone(chatHistory);
+
+            for (const sender_user of Object.keys(all_messages)){
+                if(sender_user in tmpChatHistory == false){
+                        tmpChatHistory[sender_user] = []
+                }
+                tmpChatHistory[sender_user] = [...tmpChatHistory[sender_user], ...all_messages[sender_user]]
+            }
+
+            // Set back to State
+            setChatHistory(tmpChatHistory);
+
+            // Clear messages
+            let clear = await fetch("/api/messages/clear");
         }
     }
 

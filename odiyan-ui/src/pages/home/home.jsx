@@ -18,27 +18,38 @@ const Home = () => {
             setUserDetails(tmpUserDetails);
         }
     }
-    
+
     const appendChatHistory = async(data) => {
         const tmpChatHistory = structuredClone(chatHistory);
-        if(data['username'] in tmpChatHistory == false){
-            tmpChatHistory[data['username']] = []
+        if(data['recipient_user'] in tmpChatHistory == false){
+            tmpChatHistory[data['recipient_user']] = []
         }
 
-        tmpChatHistory[data['username']] = [...tmpChatHistory[data['username']], data['msg_entry']]
+        tmpChatHistory[data['recipient_user']] = [...tmpChatHistory[data['recipient_user']], data['message_content_json']]
         console.log("Chat History = ");
         console.log(tmpChatHistory);
         setChatHistory(tmpChatHistory);
     }
+
+    const loadMyMessages = async() => {
+        let response = await fetch("/api/messages");
+        if(response.status==200){
+            let all_messages = response.json();
+            console.log(all_messages);
+        }
+    }
+
     useEffect(()=>{
         checkLogin();
+
+        loadMyMessages();
     },[]);
     
     return (
         <>
             <div>
-                <HeaderBanner username={userDetails['username']} setChatHistory={appendChatHistory}/>
-                <ChatBody chatHistory={chatHistory} chattingWith={chattingWith} setChattingWith={setChattingWith}/>
+                <HeaderBanner username={userDetails['recipient_user']} setChatHistory={appendChatHistory}/>
+                <ChatBody chatHistory={chatHistory} chattingWith={chattingWith} setChattingWith={setChattingWith} setChatHistory={appendChatHistory}/>
             </div>
         </>
     )

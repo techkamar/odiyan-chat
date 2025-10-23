@@ -31,15 +31,35 @@ const NewChatWindow = (props) => {
 
     const sendHi = async() => {
         const utcTimestamp = Date.now();
-        props.setChatHistory({
-            'username':searchUsername,
-            'msg_entry':{
-                "type": "sent",
+
+        const add_message_payload = {
+            "recipient_user": searchUsername,
+            "message_content_json": {
+                "type": "recieved",
                 "message": "Hi",
                 "timestamp": utcTimestamp
             }
+        }
+
+        let response = await fetch("/api/message",{
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(add_message_payload)
         })
-        setUserFound(false);
+
+        if (response.status==200){
+            props.setChatHistory({
+                'recipient_user':searchUsername,
+                'message_content_json':{
+                    "type": "sent",
+                    "message": "Hi",
+                    "timestamp": utcTimestamp
+                }
+            })
+            setUserFound(false);
+        }
     } 
 
     return(

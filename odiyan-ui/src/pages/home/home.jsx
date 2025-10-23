@@ -49,20 +49,21 @@ const Home = () => {
             setChatHistory(tmpChatHistory);
 
             // Clear messages
-            let clear = await fetch("/api/messages/clear");
+            // let clear = await fetch("/api/messages/clear");
         }
     }
 
     useEffect(()=>{
         checkLogin();
-
         loadMyMessages();
+        // setInterval(loadMyMessages, 10000);
+
     },[]);
     
     return (
         <>
             <div>
-                <HeaderBanner username={userDetails['recipient_user']} setChatHistory={appendChatHistory}/>
+                <HeaderBanner username={userDetails['username']} setChatHistory={appendChatHistory}/>
                 <ChatBody chatHistory={chatHistory} chattingWith={chattingWith} setChattingWith={setChattingWith} setChatHistory={appendChatHistory}/>
             </div>
         </>

@@ -33,13 +33,12 @@ const ChatBodyRightComponent = (props) => {
                     "timestamp": utcTimestamp
                 }
             })
-            setMessageToSend('');// Clear Text box
         }
     }
 
     return(
         <>
-            <div class="chat-body-right-container">
+            <div className="chat-body-right-container">
                 {
                     props.chatUsername!=""?
                     <>

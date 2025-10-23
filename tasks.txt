@@ -1,2 +1,4 @@
-4. POST message API
-5. Append Message to UI chat area after sending
+1. Clear API to clear messges between 2 users
+2. When to trigger it. How many message to retain
+3. Self Destruct API make it work
+4. Login and Register button color flip

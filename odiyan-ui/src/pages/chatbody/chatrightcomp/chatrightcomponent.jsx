@@ -4,6 +4,11 @@ import './chatrightcomponent.css';
 const ChatBodyRightComponent = (props) => {
     const [messageToSend, setMessageToSend] = useState('');
 
+    const getFormattedDateTime = (timestamp) => {
+        const dateval = new Date(timestamp);
+        return dateval.toLocaleDateString()+" "+dateval.toLocaleTimeString();
+    }
+
     const sendMessage = async() => {
         const utcTimestamp = Date.now();
 
@@ -53,7 +58,12 @@ const ChatBodyRightComponent = (props) => {
                                 {
                                     
                                     props.recipientUser!=null? props.chats[props.recipientUser].map((entry, index) => (
-                                        <div className={entry['type']}><span className='user_msg'>{entry['message']}</span></div>
+                                        <div className={entry['type']}>
+                                            <span className='user_msg'>
+                                                <div className='message-content'>{entry['message']}</div>
+                                                <div>{getFormattedDateTime(entry['timestamp'])}</div>
+                                            </span>
+                                        </div>
                                     )):<></>
                                 }
                                 {

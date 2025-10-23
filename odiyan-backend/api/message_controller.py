@@ -14,3 +14,15 @@ def create_message(request: Request, message:CreateMessage):
         return JSONResponse(status_code=500,content={"message":f"User {message.recipient_user} doesnt exist"})
     
     DataService.add_message(message.recipient_user, decoded_jwt['username'], message.message_content_json)
+
+
+@message_router.get("s")
+def get_all_messages(request: Request):
+    decoded_jwt = DataService.decode_user_jwt(request.cookies.get("Authorization"))
+    return DataService.get_all_messages(decoded_jwt['username'])
+
+
+@message_router.get("s/clear")
+def clear_all_my_messages(request: Request):
+    decoded_jwt = DataService.decode_user_jwt(request.cookies.get("Authorization"))
+    return DataService.clear_all_messages(decoded_jwt['username'])

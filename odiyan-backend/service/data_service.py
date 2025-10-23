@@ -100,5 +100,14 @@ class DataService:
                 DataService.message[recipient_user][sender_user]=[]
             
             DataService.message[recipient_user][sender_user].append(message_content_json)
-
-            print(DataService.message)
+    
+    @staticmethod
+    def get_all_messages(recipient_user):
+        if recipient_user not in DataService.message:
+            DataService.message[recipient_user]={}
+        
+        return DataService.message[recipient_user]
+    
+    @staticmethod
+    def clear_all_messages(recipient_user):
+        DataService.message[recipient_user]={}

@@ -9,6 +9,8 @@
     padding:10px;
     background-color: whitesmoke;
     color: black;
+    max-width:40vw;
+    word-break: break-all;
 }
 .sent{
     display: flex;

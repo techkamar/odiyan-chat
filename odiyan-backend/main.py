@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse
 from api.auth_controller import auth_router
 from api.user_controller import user_router
+from api.message_controller import message_router
 import os
 
 STATIC_CACHING_ENABLED = os.getenv("STATIC_CACHING_ENABLED","Y")
@@ -60,3 +61,4 @@ def give_static_assets(asset_file:str):
 # Adding other routers
 app.include_router(auth_router, tags=["Auth based APIs"])
 app.include_router(user_router, tags=["User Management APIs"])
+app.include_router(message_router, tags=["Message Related APIs"])

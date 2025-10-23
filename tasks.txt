@@ -1,5 +1,2 @@
-1. Make Search User API
-2. Add Header with logout button for landing page
-3. Add Search box in UI
 4. POST message API
 5. Append Message to UI chat area after sending

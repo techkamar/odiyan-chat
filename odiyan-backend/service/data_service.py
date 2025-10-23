@@ -3,9 +3,28 @@ import hashlib
 import jwt
 import os
 import datetime
+import threading
+
+lock = threading.Lock()
 
 class DataService:
     user = {}
+
+    """
+        << message structure >>
+        {
+            "to": {
+                "from": [
+                            {
+                                "type": "recieved",
+                                "message": "Hi",
+                                "timestamp": "timestamp"
+                            }
+                ]
+            }
+        }
+    """
+    message = {}
     # Secret key for encoding and decoding
     SECRET_KEY = os.getenv("JWTSECKEY","JWTSECKEY")
 
@@ -69,3 +88,17 @@ class DataService:
             raise Exception("JWT Token has expired")
         except jwt.InvalidTokenError:
             raise Exception("JWT Token is Invalid")
+        
+    
+    @staticmethod
+    def add_message(recipient_user, sender_user, message_content_json):
+        with lock: # Synchronizing thread to avoid data corruption when multi users are accessing this API
+            if recipient_user not in DataService.message:
+                DataService.message[recipient_user]={}
+            
+            if sender_user not in DataService.message[recipient_user]:
+                DataService.message[recipient_user][sender_user]=[]
+            
+            DataService.message[recipient_user][sender_user].append(message_content_json)
+
+            print(DataService.message)

@@ -10,7 +10,6 @@ const ChatBodyRightComponent = (props) => {
         const add_message_payload = {
             "recipient_user": props.recipientUser,
             "message_content_json": {
-                "type": "recieved", // to make sure that alignment is linked with CSS class
                 "message": messageToSend,
                 "timestamp": utcTimestamp
             }
@@ -28,11 +27,12 @@ const ChatBodyRightComponent = (props) => {
             props.setChatHistory({
                 'recipient_user':props.recipientUser,
                 'message_content_json':{
-                    "type": "sent",
                     "message": messageToSend,
+                    "type": "sent",
                     "timestamp": utcTimestamp
                 }
             })
+            setMessageToSend('');
         }
     }
 
@@ -61,7 +61,7 @@ const ChatBodyRightComponent = (props) => {
                                         <div className='message-reply-box-parent-container'>
                                         <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
                                         <div className='message-reply-box-container'>
-                                            <input type="text" placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
+                                            <input type="text" value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
                                             <button onClick={()=>(sendMessage())}>SEND</button>
                                         </div>
                                         </div>:

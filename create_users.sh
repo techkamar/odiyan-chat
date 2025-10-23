@@ -17,3 +17,13 @@ curl -X 'POST' \
   "password": "john",
   "confirm_password": "john"
 }'
+
+curl -X 'POST' \
+  'http://127.0.0.1:8080/api/user' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "jack",
+  "password": "jack",
+  "confirm_password": "jack"
+}'

@@ -34,36 +34,14 @@ const Home = () => {
         let response = await fetch("/api/messages");
         if(response.status==200){
             let all_messages = await response.json();
-            
-            let tmpChatHistory = structuredClone(chatHistory);
-            console.log("cloned value = ")
-            console.log(tmpChatHistory)
-
-            for (const sender_user of Object.keys(all_messages)){
-
-                if(sender_user in tmpChatHistory == false){
-                        tmpChatHistory[sender_user] = []
-                }
-                console.log("History of Sender = ")
-                console.log(tmpChatHistory[sender_user])
-
-                //Problem is here
-                tmpChatHistory[sender_user] = [...tmpChatHistory[sender_user], ...all_messages[sender_user]]
-                
-            }
-
-            // Set back to State
-            setChatHistory(tmpChatHistory);
-
-            // Clear messages
-            // let clear = await fetch("/api/messages/clear");
+            setChatHistory(all_messages);
         }
     }
 
     useEffect(()=>{
         checkLogin();
         loadMyMessages();
-
+        setInterval(loadMyMessages, 2000);
     },[]);
     
     return (

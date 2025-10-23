@@ -4,6 +4,7 @@ import jwt
 import os
 import datetime
 import threading
+import copy
 
 lock = threading.Lock()
 
@@ -99,7 +100,20 @@ class DataService:
             if sender_user not in DataService.message[recipient_user]:
                 DataService.message[recipient_user][sender_user]=[]
             
-            DataService.message[recipient_user][sender_user].append(message_content_json)
+            if sender_user not in DataService.message:
+                DataService.message[sender_user]={}
+            
+            if recipient_user not in DataService.message[sender_user]:
+                DataService.message[sender_user][recipient_user]=[]
+            
+            reciever_message_json = copy.deepcopy(message_content_json)
+            reciever_message_json['type'] = 'recieved'
+            DataService.message[recipient_user][sender_user].append(reciever_message_json)
+
+            sender_message_json = copy.deepcopy(message_content_json)
+            sender_message_json['type'] = 'sent'
+
+            DataService.message[sender_user][recipient_user].append(sender_message_json)
             print(DataService.message)
     
     @staticmethod

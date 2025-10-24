@@ -76,3 +76,7 @@
     color:white;
     cursor: pointer;
 }
+
+.conversation-label{
+    padding:10px 20px;
+}

@@ -50,14 +50,14 @@ const ChatBodyRightComponent = (props) => {
             body: JSON.stringify({'other_user':props.recipientUser})
         })
 
-        props.setRecipientUser(null);
+        props.setRecipientUser(null); // As conversation is deleted. We need to make sure no recipient is set to avoid crashes
     }
     return(
         <div className="chat-body-right-container">
             {
                 props.recipientUser!=null?
                 <div className='chat-history-top-bar'>
-                    <span>Converstaion with @{props.recipientUser}</span>
+                    <span className='conversation-label'>Conversation with @{props.recipientUser}</span>
                     <button className='delete-conversation-button' onClick={()=>(deleteIndividualConversation())}> Delete This Conversation</button>
                 </div>:
                 <></>

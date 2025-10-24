@@ -17,3 +17,10 @@
     color: black;
     cursor: pointer;
 }
+
+.contact-label{
+    text-align: center;
+    padding:20px 40px;
+    font-weight: bold;
+    border-bottom:1px solid whitesmoke;
+}

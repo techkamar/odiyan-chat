@@ -35,7 +35,7 @@ const Login = (props) => {
                 <div className='login-box-container'>
                     <div className='login-entry'>
                         <p style={{textAlign:'center', fontWeight:'bold', fontSize:'20px'}}> Login to your account</p>
-                        <input type='text' placeholder='USERNAME' onChange={(e)=>(setUsername(e.target.value))}/>
+                        <input type='text' style={{textTransform: 'lowercase'}} placeholder='USERNAME' onChange={(e)=>(setUsername(e.target.value.toLowerCase()))}/>
                         <input type='password' placeholder='PASSWORD'onChange={(e)=>(setPassword(e.target.value))}/>
                         <button className='scale-btn'onClick={()=>(doLogin())}>LOGIN</button>
                     </div>
@@ -86,7 +86,7 @@ const Register = (props) => {
                 <div className='login-box-container'>
                     <div className='login-entry'>
                         <p style={{textAlign:'center', fontWeight:'bold', fontSize:'20px'}}> Create a new account </p>
-                        <input type='text' placeholder='USERNAME'onChange={(e)=>(setUsername(e.target.value))}/>
+                        <input type='text' style={{textTransform: 'lowercase'}} placeholder='USERNAME'onChange={(e)=>(setUsername(e.target.value.toLowerCase()))}/>
                         <input type='password' placeholder='PASSWORD' onChange={(e)=>(setPassword(e.target.value))}/>
                         <input type='password' placeholder='CONFIRM PASSWORD'onChange={(e)=>(setConfirmPassword(e.target.value))}/>
                         <button className='scale-btn' onClick={()=>(doRegister())}>REGISTER</button>

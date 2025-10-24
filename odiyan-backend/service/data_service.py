@@ -131,3 +131,10 @@ class DataService:
     @staticmethod
     def individual_converstaion(sender,reciever):
         DataService.message[sender].pop(reciever)
+
+    @staticmethod
+    def self_destruct(username):
+        if username in DataService.message:
+            DataService.message.pop(username)
+            
+        DataService.user.pop(username)

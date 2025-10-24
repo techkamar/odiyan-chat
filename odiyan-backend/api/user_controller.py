@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
 from fastapi.responses import JSONResponse
 from model.user import CreateUser, SearchUser
 from service.data_service import DataService
@@ -26,3 +26,9 @@ def search_user(request: Request, search_user:SearchUser):
         return JSONResponse(status_code=200, content={"user_exists": True})
     else:
         return JSONResponse(status_code=200, content={"user_exists": False})
+
+@user_router.delete("/self-destruct")
+def delete_user_and_contents(request: Request, response: Response):
+    decoded_jwt = DataService.decode_user_jwt(request.cookies.get("Authorization"))
+    DataService.self_destruct(decoded_jwt['username'])
+    response.delete_cookie(key="Authorization")

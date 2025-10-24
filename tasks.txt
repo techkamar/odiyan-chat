@@ -1,3 +1,5 @@
+1. Delete conversation should remove from both
+2. If recieving user is no more available. Tell that error to user
 3. Enough testing with 3 simultenous users
 4. Put release notes and Finalize branch v0.1
 

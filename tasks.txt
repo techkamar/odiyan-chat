@@ -1,4 +1,5 @@
 1. Clear API to clear messges between 2 users
 2. When to trigger it. How many message to retain
-3. Self Destruct API make it work
+3. Self Destruct API make it work. Ask confirmation with pop-up
 4. Login and Register button color flip
+5. Finalize branch v0.1

@@ -49,7 +49,10 @@ const ChatBodyRightComponent = (props) => {
                     <>
                         {
                             props.recipientUser!=null?
-                            <div className='chat-history-top-bar'> Now Chatting with @{props.recipientUser}</div>:
+                            <div className='chat-history-top-bar'>
+                                <span>Now Chatting with @{props.recipientUser}</span>
+                                <button className='delete-conversation-button'> Delete This Conversation</button>
+                            </div>:
                             <></>
                         }
                         

@@ -21,13 +21,14 @@
 }
 
 .chat-history-top-bar{
-    text-align: center;
+    display:flex;
+    justify-content: space-between;
     background-color: whitesmoke;
     padding:10px 20px;
     color: black;
     font-weight: bold;
     position:fixed;
-    width:75vw;
+    width:73vw;
 }
 
 .chat-history-content-bar{
@@ -58,4 +59,20 @@
 
 .message-content{
     font-size: 20px;
+}
+
+
+.delete-conversation-button{
+    background-color: whitesmoke;
+    color: #101010;
+    padding:10px 20px;
+    border:0px;
+    outline: 1px solid black;
+    margin-right: 20px;
+}
+
+.delete-conversation-button:hover{
+    background-color: #101010;
+    color:white;
+    cursor: pointer;
 }

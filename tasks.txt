@@ -1,4 +1,3 @@
-2. username has to be lowercase [Both input and backend change]
 3. Enough testing with 3 simultenous users
 4. Put release notes and Finalize branch v0.1
 

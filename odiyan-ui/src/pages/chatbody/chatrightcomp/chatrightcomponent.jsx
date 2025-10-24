@@ -53,46 +53,44 @@ const ChatBodyRightComponent = (props) => {
         props.setRecipientUser(null);
     }
     return(
-        <>
-            <div className="chat-body-right-container">
-                        {
-                            props.recipientUser!=null?
-                            <div className='chat-history-top-bar'>
-                                <span>Converstaion with @{props.recipientUser}</span>
-                                <button className='delete-conversation-button' onClick={()=>(deleteIndividualConversation())}> Delete This Conversation</button>
+        <div className="chat-body-right-container">
+            {
+                props.recipientUser!=null?
+                <div className='chat-history-top-bar'>
+                    <span>Converstaion with @{props.recipientUser}</span>
+                    <button className='delete-conversation-button' onClick={()=>(deleteIndividualConversation())}> Delete This Conversation</button>
+                </div>:
+                <></>
+            }
+            
+            <div className='chat-history-content-bar'>
+                <div>
+                    {
+                        
+                        props.recipientUser!=null? props.chats[props.recipientUser].map((entry, index) => (
+                            <div className={entry['type']}>
+                                <span className='user_msg'>
+                                    <div className='message-content'>{entry['message']}</div>
+                                    <div>{getFormattedDateTime(entry['timestamp'])}</div>
+                                </span>
+                            </div>
+                        )):<></>
+                    }
+                    {
+                        props.recipientUser!=null?
+                            <div className='message-reply-box-parent-container'>
+                            <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
+                            <div className='message-reply-box-container'>
+                                <input type="text" value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
+                                <button onClick={()=>(sendMessage())}>SEND</button>
+                            </div>
                             </div>:
                             <></>
-                        }
-                        
-                        <div className='chat-history-content-bar'>
-                            <div>
-                                {
-                                    
-                                    props.recipientUser!=null? props.chats[props.recipientUser].map((entry, index) => (
-                                        <div className={entry['type']}>
-                                            <span className='user_msg'>
-                                                <div className='message-content'>{entry['message']}</div>
-                                                <div>{getFormattedDateTime(entry['timestamp'])}</div>
-                                            </span>
-                                        </div>
-                                    )):<></>
-                                }
-                                {
-                                    props.recipientUser!=null?
-                                        <div className='message-reply-box-parent-container'>
-                                        <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
-                                        <div className='message-reply-box-container'>
-                                            <input type="text" value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
-                                            <button onClick={()=>(sendMessage())}>SEND</button>
-                                        </div>
-                                        </div>:
-                                        <></>
-                                }
-                                
-                            </div>
-                        </div>
-            </div>    
-        </>
+                    }
+                    
+                </div>
+            </div>
+        </div>
     );
 }
 export default ChatBodyRightComponent;

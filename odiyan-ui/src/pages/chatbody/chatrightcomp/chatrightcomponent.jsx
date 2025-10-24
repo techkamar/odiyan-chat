@@ -41,17 +41,25 @@ const ChatBodyRightComponent = (props) => {
         }
     }
 
+    const deleteIndividualConversation = async() => {
+        const response = await fetch("/api/message/delete-conversation",{
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({'other_user':props.recipientUser})
+        })
+
+        props.setRecipientUser(null);
+    }
     return(
         <>
             <div className="chat-body-right-container">
-                {
-                    props.chatUsername!=""?
-                    <>
                         {
                             props.recipientUser!=null?
                             <div className='chat-history-top-bar'>
-                                <span>Now Chatting with @{props.recipientUser}</span>
-                                <button className='delete-conversation-button'> Delete This Conversation</button>
+                                <span>Converstaion with @{props.recipientUser}</span>
+                                <button className='delete-conversation-button' onClick={()=>(deleteIndividualConversation())}> Delete This Conversation</button>
                             </div>:
                             <></>
                         }
@@ -83,8 +91,6 @@ const ChatBodyRightComponent = (props) => {
                                 
                             </div>
                         </div>
-                    </>:<></>
-                }
             </div>    
         </>
     );

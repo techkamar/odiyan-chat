@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Response
 from fastapi.responses import JSONResponse
-from model.message import CreateMessage
+from model.message import CreateMessage, ClearConversation
 from service.data_service import DataService
 
 message_router = APIRouter(prefix="/api/message")
@@ -22,7 +22,7 @@ def get_all_messages(request: Request):
     return DataService.get_all_messages(decoded_jwt['username'])
 
 
-@message_router.get("s/clear")
-def clear_all_my_messages(request: Request):
+@message_router.post("/delete-conversation")
+def claer_conversation_with_one_one_user(request: Request, clear_convo: ClearConversation):
     decoded_jwt = DataService.decode_user_jwt(request.cookies.get("Authorization"))
-    return DataService.clear_all_messages(decoded_jwt['username'])
+    return DataService.individual_converstaion(decoded_jwt['username'],clear_convo.other_user)

@@ -5,7 +5,7 @@ import os
 import datetime
 import threading
 import copy
-
+from service.util_service import UtilService
 lock = threading.Lock()
 
 class DataService:
@@ -26,8 +26,9 @@ class DataService:
         }
     """
     message = {}
+    
     # Secret key for encoding and decoding
-    SECRET_KEY = os.getenv("JWTSECKEY","JWTSECKEY")
+    SECRET_KEY = UtilService.generate_random_string(36)
 
     @staticmethod
     def encode_password(password):
@@ -126,3 +127,7 @@ class DataService:
     @staticmethod
     def clear_all_messages(recipient_user):
         DataService.message[recipient_user]={}
+
+    @staticmethod
+    def individual_converstaion(sender,reciever):
+        DataService.message[sender].pop(reciever)

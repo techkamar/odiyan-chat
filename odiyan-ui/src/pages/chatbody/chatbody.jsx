@@ -10,7 +10,7 @@ const ChatBody = (props) => {
         <>
             <div className="chat-body-root-container">
                 <ChatBodyLeftComponent contacts={Object.keys(props.chatHistory)} setRecipientUser={setRecipientUser}/>
-                <ChatBodyRightComponent recipientUser={recipientUser} chats={props.chatHistory} setChatHistory={props.setChatHistory}/>
+                <ChatBodyRightComponent recipientUser={recipientUser} chats={props.chatHistory} setChatHistory={props.setChatHistory} setRecipientUser={setRecipientUser}/>
             </div>
         </>
     );

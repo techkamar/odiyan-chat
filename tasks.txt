@@ -1,5 +1,11 @@
-1. Clear API to clear messges between 2 users - DONE
-2. When to trigger it. How many message to retain
-3. Self Destruct API make it work. Ask confirmation with pop-up - DOING
-4. Login and Register button color flip
-5. Finalize branch v0.1
+1. Self Destruct API make it work. Ask confirmation with pop-up - DOING
+2. username has to be lowercase [Both input and backend change]
+3. Enough testing with 3 simultenous users
+4. Put release notes and Finalize branch v0.1
+
+v0.2 features
+1. SSE / Web socket for messages loading
+2. Rate Limiter for authed apis based on username
+3. Rate Limiter for user login test based on IP address
+5. All UI fetch calls with one function. 401 becomes redirect
+6. Short JWT lifetime and frequent refresh for next 1 minute. If user is inactive for a minute. Auto Logout

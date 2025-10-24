@@ -1,7 +1,7 @@
 #Activate ENVIRONMENT
 source venv/bin/activate
 
-export STATIC_CACHING_ENABLED="N" # Always read from file
+#export STATIC_CACHING_ENABLED="N" # Always read from file
 
 # Install dependencies
 pip install -r requirements.txt

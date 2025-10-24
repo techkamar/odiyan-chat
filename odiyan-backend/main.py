@@ -54,7 +54,7 @@ def show_login():
 def give_static_assets(asset_file:str):
     content = get_static_content_from_disk_or_cache(asset_file,f"assets/{asset_file}")
     media_type = detect_media_type(asset_file)
-    return Response(content=content, media_type=media_type, headers={"Cache-Control":"max-age=60"})
+    return Response(content=content, media_type=media_type, headers={"Cache-Control":"max-age=10800"}) #Caching static files for 3 hours
 
 # END APIs
 

@@ -1,4 +1,4 @@
-1. Self Destruct API make it work. Ask confirmation with pop-up - DOING
+1. Self Destruct API make it work. Ask confirmation with pop-up - MONDAY
 2. username has to be lowercase [Both input and backend change]
 3. Enough testing with 3 simultenous users
 4. Put release notes and Finalize branch v0.1

@@ -7,6 +7,9 @@ user_router = APIRouter(prefix="/api/user")
 
 @user_router.post("")
 def register_user(user_data:CreateUser):
+    if " " in user_data.username:
+        return JSONResponse(status_code=500, content={"message": "Username cannot contain SPACE as character. Use UNDERSCORE instead"})
+    
     if user_data.password!=user_data.confirm_password:
         return JSONResponse(status_code=500, content={"message": "Password and Confirm Password is not matching"})
     

@@ -82,7 +82,7 @@ const ChatBodyRightComponent = (props) => {
                             <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
                             <div className='message-reply-box-container'>
                                 <input type="text" value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
-                                <button onClick={()=>(sendMessage())}>SEND</button>
+                                <button className='send-message-button' onClick={()=>(sendMessage())}>SEND</button>
                             </div>
                             </div>:
                             <></>

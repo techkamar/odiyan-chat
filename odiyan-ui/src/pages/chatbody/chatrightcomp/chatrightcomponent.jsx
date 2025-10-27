@@ -52,10 +52,12 @@ const ChatBodyRightComponent = (props) => {
 
         props.setRecipientUser(null); // As conversation is deleted. We need to make sure no recipient is set to avoid crashes
     }
+
+    const toShowContents = props.recipientUser!=null && props.recipientUser in props.chats;
     return(
         <div className="chat-body-right-container">
             {
-                props.recipientUser!=null?
+                toShowContents?
                 <div className='chat-history-top-bar'>
                     <span className='conversation-label'>Conversation with @{props.recipientUser}</span>
                     <button className='delete-conversation-button' onClick={()=>(deleteIndividualConversation())}> Delete This Conversation</button>
@@ -66,8 +68,7 @@ const ChatBodyRightComponent = (props) => {
             <div className='chat-history-content-bar'>
                 <div>
                     {
-                        
-                        props.recipientUser!=null? props.chats[props.recipientUser].map((entry, index) => (
+                        toShowContents ? props.chats[props.recipientUser].map((entry, index) => (
                             <div className={entry['type']}>
                                 <span className='user_msg'>
                                     <div className='message-content'>{entry['message']}</div>
@@ -77,7 +78,7 @@ const ChatBodyRightComponent = (props) => {
                         )):<></>
                     }
                     {
-                        props.recipientUser!=null?
+                        toShowContents?
                             <div className='message-reply-box-parent-container'>
                             <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
                             <div className='message-reply-box-container'>

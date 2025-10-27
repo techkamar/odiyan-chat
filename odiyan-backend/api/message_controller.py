@@ -25,4 +25,4 @@ def get_all_messages(request: Request):
 @message_router.post("/delete-conversation")
 def claer_conversation_with_one_one_user(request: Request, clear_convo: ClearConversation):
     decoded_jwt = DataService.decode_user_jwt(request.cookies.get("Authorization"))
-    return DataService.individual_converstaion(decoded_jwt['username'],clear_convo.other_user)
+    return DataService.delete_individual_converstaion(decoded_jwt['username'],clear_convo.other_user)

@@ -42,7 +42,7 @@ def user_login(response: Response, user_data: LoginUser):
     response.set_cookie(
         key="Authorization",
         value=user_jwt,
-        max_age=3600,  # 1 hour
+        max_age=600,  # 10 minutes
         httponly=True,
         secure=True,
         samesite="Strict"

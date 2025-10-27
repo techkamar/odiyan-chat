@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './chatrightcomponent.css';
+import {doSecureHTTPFetchPOST} from "../../../util.js";
 
 const ChatBodyRightComponent = (props) => {
     const [messageToSend, setMessageToSend] = useState('');
@@ -20,25 +21,22 @@ const ChatBodyRightComponent = (props) => {
             }
         }
 
-        let response = await fetch("/api/message",{
-            method: "POST",
-            headers: {
+        let response = await doSecureHTTPFetchPOST("/api/message",
+            {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(add_message_payload)
-        })
+            add_message_payload
+        )
 
-        if (response.status==200){
-            props.setChatHistory({
-                'recipient_user':props.recipientUser,
-                'message_content_json':{
-                    "message": messageToSend,
-                    "type": "sent",
-                    "timestamp": utcTimestamp
-                }
-            })
-            setMessageToSend('');
-        }
+        props.setChatHistory({
+            'recipient_user':props.recipientUser,
+            'message_content_json':{
+                "message": messageToSend,
+                "type": "sent",
+                "timestamp": utcTimestamp
+            }
+        })
+        setMessageToSend('');
     }
 
     const deleteIndividualConversation = async() => {

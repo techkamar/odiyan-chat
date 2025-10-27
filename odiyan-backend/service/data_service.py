@@ -137,5 +137,11 @@ class DataService:
     def self_destruct(username):
         if username in DataService.message:
             DataService.message.pop(username)
-            
+        
         DataService.user.pop(username)
+
+        # Delete the conversation from all users
+        for other_user in DataService.message:
+            DataService.message[other_user].pop(username)
+
+        

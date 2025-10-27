@@ -58,7 +58,7 @@ const NewChatWindow = (props) => {
                     "timestamp": utcTimestamp
                 }
             })
-            setUserFound(false);
+            props.show(false);
         }
     } 
 

@@ -21,7 +21,7 @@
     position:fixed;
     top:200px;
     border:0px;
-    background-color: transparent;
+    background-color: #242424;
     outline:1px solid whitesmoke;
 }
 
@@ -39,13 +39,14 @@
 
 .chat-dialog-say-hi-btn{
     padding:10px 20px;
-    background-color: transparent;
+    background-color: whitesmoke;
     border:0px;
     width:100%;
-    outline: 1px solid whitesmoke;
+    color:black;
+    opacity: 0.7;
 }
 
 .chat-dialog-say-hi-btn:hover{
-    background-color: whitesmoke;
+    opacity: 1;
     color:black;
 }

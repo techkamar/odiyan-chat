@@ -14,7 +14,7 @@ app = FastAPI()
 
 file_content_cache = {}
 
-PUBLIC_ENDPOINTS = ["/", "/login", "/docs", "/openapi.json"]
+PUBLIC_ENDPOINTS = ["/", "/login", "/api/user", "/api/auth/login", "/docs", "/openapi.json"]
 
 # Create middleware to validate login for API endpoints
 class JWTMiddleware(BaseHTTPMiddleware):

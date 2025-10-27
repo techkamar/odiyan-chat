@@ -95,3 +95,11 @@
     font-weight:bold;
     cursor: pointer;
 }
+
+.message-text-area{
+    field-sizing: content;
+    padding: 10px 20px;
+    background-color: whitesmoke;
+    border:0px;
+    color:black;
+}

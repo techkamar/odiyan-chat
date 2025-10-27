@@ -1,7 +1,12 @@
-v0.2 features
-0. Add Middleware to scan and auth all requests
+v0.2 features [ More Security and Stability]
+0. Add Middleware to scan and auth all requests - DONE
 1. All UI fetch calls with one function. 401 becomes redirect
 2. SSE / Web socket for messages loading
 3. Rate Limiter for authed apis based on username
 4. Rate Limiter for user login test based on IP address
 6. Short JWT lifetime and frequent refresh for next 1 minute. If user is inactive for a minute. Auto Logout
+
+
+v0.3 [User Types and Management]
+1. Admin Role and User Role
+2. Admins ability to shutdown server

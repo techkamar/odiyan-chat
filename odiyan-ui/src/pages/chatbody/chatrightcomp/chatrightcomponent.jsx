@@ -71,7 +71,11 @@ const ChatBodyRightComponent = (props) => {
                         toShowContents ? props.chats[props.recipientUser].map((entry, index) => (
                             <div className={entry['type']}>
                                 <span className='user_msg'>
-                                    <div className='message-content'>{entry['message']}</div>
+                                    {
+                                        entry['message'].split("\n").map((message_fragment,index)=>{
+                                            return <div className='message-content'>{message_fragment}</div>
+                                        })
+                                    }
                                     <div>{getFormattedDateTime(entry['timestamp'])}</div>
                                 </span>
                             </div>
@@ -82,7 +86,7 @@ const ChatBodyRightComponent = (props) => {
                             <div className='message-reply-box-parent-container'>
                             <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
                             <div className='message-reply-box-container'>
-                                <input type="text" value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
+                                <textarea className='message-text-area' value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
                                 <button className='send-message-button' onClick={()=>(sendMessage())}>SEND</button>
                             </div>
                             </div>:

@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './chatrightcomponent.css';
 import {doSecureHTTPFetchPOST} from "../../../util.js";
 
 const ChatBodyRightComponent = (props) => {
+    useEffect(()=>{
+        console.log("Props Changed for Right Component");
+    },[]);
+
     const [messageToSend, setMessageToSend] = useState('');
 
     const getFormattedDateTime = (timestamp) => {

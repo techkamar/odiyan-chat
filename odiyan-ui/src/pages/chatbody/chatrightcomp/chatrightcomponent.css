@@ -3,6 +3,7 @@
     min-height: 89vh;
     max-height: 89vh;
     overflow-y: auto;
+    scrollbar-width: thin;
 }
 .user_msg{
     margin:20px;

@@ -1,6 +1,16 @@
 v0.2 features [ More Security and Stability]
 0. Add Middleware to scan and auth all requests - DONE
-1. All UI fetch calls with one function. 401 becomes redirect
+1. All UI fetch calls with one function. 401 becomes redirect - DONE
+2. MAKE CHAT. SEND and RECIEVE with WEBSOCKET
+
+
+CAN WEBSOCKET UPDATE REACT STATE
+DONT STORE CONVO in BOTH USER
+DELETE THE MESSAGE. ONCE WEBSOCKET has SENT TO USER
+
+
+
+2. Test in new project whether websocket retains state
 2. SSE / Web socket for messages loading
 3. Rate Limiter for authed apis based on username
 4. Rate Limiter for user login test based on IP address

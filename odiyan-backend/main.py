@@ -1,16 +1,40 @@
 from fastapi import FastAPI
 from fastapi import FastAPI, Request, Response
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from api.auth_controller import auth_router
 from api.user_controller import user_router
 from api.message_controller import message_router
+from service.data_service import DataService
 import os
+from starlette.middleware.base import BaseHTTPMiddleware
 
 STATIC_CACHING_ENABLED = os.getenv("STATIC_CACHING_ENABLED","Y")
 
 app = FastAPI()
 
 file_content_cache = {}
+
+PUBLIC_ENDPOINTS = ["/", "/login", "/api/user", "/api/auth/login", "/docs", "/openapi.json"]
+
+# Create middleware to validate login for API endpoints
+class JWTMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        # Skip JWT check for public endpoints
+        if request.url.path in PUBLIC_ENDPOINTS or "/assets" in request.url.path:
+            return await call_next(request)
+
+        # Extract token from Authorization header
+        token = request.cookies.get("Authorization")
+        if not token:
+            return JSONResponse(status_code=401, content={"detail": "Invalid User Login"})
+
+        # Token not valid. Throw error
+        try:
+            DataService.decode_user_jwt(token)
+        except Exception as e:
+            return JSONResponse(status_code=401, content={"detail": str(e)})
+
+        return await call_next(request)
 
 def detect_media_type(file_path):
     extension=file_path[::-1].split(".")[0] # Reverse and split with .
@@ -59,6 +83,7 @@ def give_static_assets(asset_file:str):
 # END APIs
 
 # Adding other routers
+app.add_middleware(JWTMiddleware)
 app.include_router(auth_router, tags=["Auth based APIs"])
 app.include_router(user_router, tags=["User Management APIs"])
 app.include_router(message_router, tags=["Message Related APIs"])

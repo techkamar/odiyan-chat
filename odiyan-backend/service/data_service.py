@@ -108,14 +108,13 @@ class DataService:
                 DataService.message[sender_user][recipient_user]=[]
             
             reciever_message_json = copy.deepcopy(message_content_json)
-            reciever_message_json['type'] = 'recieved'
+            reciever_message_json['type'] = 'recieved' # type is important for CSS to align the message on right side of screen
             DataService.message[recipient_user][sender_user].append(reciever_message_json)
 
             sender_message_json = copy.deepcopy(message_content_json)
-            sender_message_json['type'] = 'sent'
+            sender_message_json['type'] = 'sent' # type is important for CSS to align the message on right side of screen
 
             DataService.message[sender_user][recipient_user].append(sender_message_json)
-            print(DataService.message)
     
     @staticmethod
     def get_all_messages(recipient_user):

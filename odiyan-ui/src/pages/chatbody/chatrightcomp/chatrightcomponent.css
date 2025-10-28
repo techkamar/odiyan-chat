@@ -3,6 +3,7 @@
     min-height: 89vh;
     max-height: 89vh;
     overflow-y: auto;
+    scrollbar-width: thin;
 }
 .user_msg{
     margin:20px;
@@ -94,4 +95,12 @@
     opacity: 1;
     font-weight:bold;
     cursor: pointer;
+}
+
+.message-text-area{
+    field-sizing: content;
+    padding: 10px 20px;
+    background-color: whitesmoke;
+    border:0px;
+    color:black;
 }

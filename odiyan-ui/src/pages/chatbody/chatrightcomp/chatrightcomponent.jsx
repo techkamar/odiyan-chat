@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './chatrightcomponent.css';
+import {doSecureHTTPFetchPOST} from "../../../util.js";
 
 const ChatBodyRightComponent = (props) => {
+    useEffect(()=>{
+        console.log("Props Changed for Right Component");
+    },[]);
+
     const [messageToSend, setMessageToSend] = useState('');
 
     const getFormattedDateTime = (timestamp) => {
@@ -20,25 +25,22 @@ const ChatBodyRightComponent = (props) => {
             }
         }
 
-        let response = await fetch("/api/message",{
-            method: "POST",
-            headers: {
+        let response = await doSecureHTTPFetchPOST("/api/message",
+            {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(add_message_payload)
-        })
+            add_message_payload
+        )
 
-        if (response.status==200){
-            props.setChatHistory({
-                'recipient_user':props.recipientUser,
-                'message_content_json':{
-                    "message": messageToSend,
-                    "type": "sent",
-                    "timestamp": utcTimestamp
-                }
-            })
-            setMessageToSend('');
-        }
+        props.setChatHistory({
+            'recipient_user':props.recipientUser,
+            'message_content_json':{
+                "message": messageToSend,
+                "type": "sent",
+                "timestamp": utcTimestamp
+            }
+        })
+        setMessageToSend('');
     }
 
     const deleteIndividualConversation = async() => {
@@ -71,7 +73,11 @@ const ChatBodyRightComponent = (props) => {
                         toShowContents ? props.chats[props.recipientUser].map((entry, index) => (
                             <div className={entry['type']}>
                                 <span className='user_msg'>
-                                    <div className='message-content'>{entry['message']}</div>
+                                    {
+                                        entry['message'].split("\n").map((message_fragment,index)=>{
+                                            return <div className='message-content'>{message_fragment}</div>
+                                        })
+                                    }
                                     <div>{getFormattedDateTime(entry['timestamp'])}</div>
                                 </span>
                             </div>
@@ -82,7 +88,7 @@ const ChatBodyRightComponent = (props) => {
                             <div className='message-reply-box-parent-container'>
                             <div className='reply-label-container'> Reply to @{props.recipientUser}</div>
                             <div className='message-reply-box-container'>
-                                <input type="text" value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
+                                <textarea className='message-text-area' value={messageToSend} placeholder='Enter your message' onChange={(e)=>(setMessageToSend(e.target.value))}/>
                                 <button className='send-message-button' onClick={()=>(sendMessage())}>SEND</button>
                             </div>
                             </div>:
